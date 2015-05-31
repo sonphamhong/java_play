@@ -1,0 +1,17 @@
+@(users: List[User])
+@import helper._
+@main("Welcome to Play") {
+
+   <h1>List user</h1>
+   @Map<Integer, Array> map = new HashMap<Integer, Array>();
+   <ul>
+	   @for(user <- users){
+			<li>@user.email</li>
+			@map.put(user.id, user.communications)
+			@for(comm <- user.communications){
+				<li>@comm.comm_user_id</li>
+			}
+		}
+	</ul>
+
+}
