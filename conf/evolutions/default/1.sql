@@ -25,10 +25,12 @@ create table user (
   constraint pk_user primary key (user_id))
 ;
 
-alter table t_comm_link add constraint fk_t_comm_link_user_id_1 foreign key (user_id) references user (user_id) on delete restrict on update restrict;
-create index ix_t_comm_link_user_id_1 on t_comm_link (user_id);
-alter table user add constraint fk_user_company_2 foreign key (company_id) references t_companies (id) on delete restrict on update restrict;
-create index ix_user_company_2 on user (company_id);
+alter table t_comm_link add constraint fk_t_comm_link_user_comm_1 foreign key (user_id) references user (user_id) on delete restrict on update restrict;
+create index ix_t_comm_link_user_comm_1 on t_comm_link (user_id);
+alter table t_comm_link add constraint fk_t_comm_link_comm_with_user_2 foreign key (comm_user_id) references user (user_id) on delete restrict on update restrict;
+create index ix_t_comm_link_comm_with_user_2 on t_comm_link (comm_user_id);
+alter table user add constraint fk_user_company_3 foreign key (company_id) references t_companies (id) on delete restrict on update restrict;
+create index ix_user_company_3 on user (company_id);
 
 
 

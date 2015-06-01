@@ -11,7 +11,9 @@ public class Communication extends Model{
 	public Long id;
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	public User user_id; 
+	public User user_comm; 
 	
-	public Long comm_user_id;
+	@ManyToOne
+	@JoinColumn(name="comm_user_id")
+	public User comm_with_user;
 }
