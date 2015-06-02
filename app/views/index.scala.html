@@ -1,7 +1,7 @@
 @(users: List[User])
 @import helper._
 @main("Welcome to Play") {
-
+	<canvas id="viewport" width="1000" height="600"></canvas>
    <h1>List user</h1>
    <ul>
 	   @for(user <- users){
