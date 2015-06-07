@@ -1,16 +1,18 @@
-@(users: List[User])
+@(users: List[User], hm: HashMap[String, ArrayList[String]])
 @import helper._
+@import com.google.gson.Gson
 @main("Welcome to Play") {
-	<canvas id="viewport" width="1000" height="600"></canvas>
+	<center>
+   		<div id="mynetwork"></div>
+   	</center>
    <h1>List user</h1>
    <ul>
-	   @for(user <- users){
-			<li>@user.email</li>
-			<br/>
-			<ul>
-				<li>@user.communicate_user()</li>
-			</ul>
-		}
+	   
 	</ul>
-
+	<script lang="text/javascript">
+	  var series = @{Html(new Gson().toJson(hm))};
+	  var testdata = {"111":"aaaa"};
+	</script>
 }
+
+<script src="@routes.Assets.at("javascripts/draw.js")" type="text/javascript"></script>

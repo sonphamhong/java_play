@@ -22,11 +22,26 @@ public class User extends Model{
 	public static Finder<String,User> find = new Finder<String,User>(
 	        String.class, User.class
 	    );
-	public void communicate_user(){
+	public ArrayList communicate_user(){
 		communications = this.communications;
-		System.out.print(communications);
+		ArrayList al = new ArrayList();
+//		System.out.print(communications);
 		for(Communication comm : communications){
-			System.out.print(comm.comm_with_user.email);
+			al.add(comm.comm_with_user.email);
 		}
+		return al;
+	}
+	
+	public static HashMap get_all_communications(){
+		HashMap hm = new HashMap();
+		List<User> users = User.find.all();
+		for(User user:users){
+			ArrayList al = new ArrayList();
+			al = user.communicate_user();
+			hm.put(user.email, al);
+		}
+		System.out.print(hm.get("user4@example.com"));
+		return hm;
+		
 	}
 }
