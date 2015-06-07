@@ -5,14 +5,17 @@ jQuery(function($){
  //    console.log(series);
     var dataNodes = [];
     var dataEdges = [];
+    var x=0, y=0;
     $.each(series, function(index, val) {
-       // console.log(index + " : "+ val[0]);
-       dataNodes.push({id: index, label: index.substr(0,4)});
+       console.log(index + " : "+ val);
+       dataNodes.push({id: index, label: index.substr(0,5), x: x, y:y});
     });
 
     $.each(series, function(index, val) {
       $.each(val, function(i, el) {
-       dataEdges.push({from: index, to: el}); 
+       dataEdges.push({from: index, to: el, arrows: {
+            to:     {enabled: true, scaleFactor:1}
+          }}); 
       });
        
     });
@@ -98,10 +101,6 @@ jQuery(function($){
 	    };
 	    var options = {
 	    	edges:{
-			    arrows: {
-			      to:     {enabled: true, scaleFactor:1},
-			      from:   {enabled: true, scaleFactor:1}
-			    },
 			    color: {
 			      color:'#848484',
 			      highlight:'#848484',
@@ -134,7 +133,7 @@ jQuery(function($){
 			      y:5
 			    },
 			    smooth: {
-			      enabled: true,
+			      enabled: false,
 			      type: "dynamic",
 			      roundness: 0
 			    },
